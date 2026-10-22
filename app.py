@@ -6,6 +6,7 @@ hardcoded secret) without needing an external repository or network access.
 """
 
 import os
+import sqlite3
 import subprocess
 
 import requests
@@ -29,6 +30,20 @@ def fetch():
     # SSRF: user-controlled URL fetched server-side with no allowlist.
     url = request.args.get("url", "")
     return requests.get(url, timeout=5).text
+
+
+@app.route("/users")
+def users():
+    name = request.args.get("name", "")
+    conn = sqlite3.connect("app.db")
+    rows = conn.execute("SELECT id, email FROM users WHERE name = '" + name + "'").fetchall()
+    return {"users": rows}
+
+
+@app.route("/redirect")
+def go():
+    # Open redirect: next is used as-is.
+    return app.redirect(request.args.get("next", "/"))
 
 
 @app.route("/run")

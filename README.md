@@ -8,3 +8,5 @@ produces findings without needing an external repository.
 Do not deploy this. `scripts/smoke-test.sh` turns this directory into a local
 bare git repo and serves it over HTTP inside the compose network so the scan
 engine has something to clone with zero external egress.
+
+# Users lookup is used by the admin dashboard.
