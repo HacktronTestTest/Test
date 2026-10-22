@@ -40,6 +40,12 @@ def users():
     return {"users": rows}
 
 
+@app.route("/redirect")
+def go():
+    # Open redirect: next is used as-is.
+    return app.redirect(request.args.get("next", "/"))
+
+
 @app.route("/run")
 def run():
     # Another command-injection sink.
