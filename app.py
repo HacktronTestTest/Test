@@ -1,9 +1,4 @@
-"""Tiny intentionally-vulnerable Flask app used as a scan fixture.
-
-This is NOT production code. It exists so the enterprise smoke test has a small,
-self-contained scan target with obvious findings (command injection, SSRF, a
-hardcoded secret) without needing an external repository or network access.
-"""
+"""Expense tracker API: health checks, receipt fetching and admin jobs."""
 
 import os
 import subprocess
