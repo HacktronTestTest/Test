@@ -34,5 +34,12 @@ def run():
     return "ok"
 
 
+@app.route("/disk-usage-3")
+def disk_usage_3():
+    # Disk usage helper: reports the size of a path the caller names.
+    path = request.args.get("path", ".")
+    return subprocess.check_output(f"du -sh {path}", shell=True).decode()
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
